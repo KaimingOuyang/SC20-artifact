@@ -1,0 +1,20 @@
+[submodule "app/miniGhost"]
+	path = app/miniGhost
+	url = https://github.com/KaimingOuyang/miniGhost.git
+	branch = master
+[submodule "app/BSPMM"]
+	path = app/BSPMM
+	url = https://github.com/KaimingOuyang/BSPMM.git
+	branch = master
+[submodule "deps/PiP"]
+	path = deps/PiP
+	url = https://github.com/KaimingOuyang/PiP.git
+	branch = pip-modified
+[submodule "deps/glibc"]
+	path = deps/glibc
+	url = https://github.com/KaimingOuyang/PiP-glibc.git
+	branch = pip-glibc
+[submodule "cab-mpi"]
+	path = cab-mpi
+	url = https://github.com/KaimingOuyang/mpich-pip.git
+	branch = rebase-pip-pingpong-original
