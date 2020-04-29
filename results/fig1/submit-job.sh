@@ -1,8 +1,6 @@
 #!/bin/bash
 
 ROOT_DIR=`pwd`/../..
-# this parameter may be changed
-SLURM_PARAM="-N 4 -p bdwall"
 export PATH=${ROOT_DIR}/installed/mpich-std/bin:$PATH
 
 cd ${ROOT_DIR}/app/miniGhost && \

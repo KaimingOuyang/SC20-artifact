@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+#SBATCH --job-name PingPong-knl-algo
+#SBATCH --mem-per-cpu=90G
+#SBATCH --time=3:00:00
+
+bin=$1
+out=$2
+
+rm ${out} > /dev/null 2>&1
+echo "bin=$bin out=$out"
+
+devi_iter=5
+size=8388608
+iter=1000
+export BIND_MODE=INTER-P2P
+echo "BIND_MODE=$BIND_MODE bin=${bin} out=${out}"
+procs=(4 6 8 16 18 20 24 28 32 36 40 48 56 64)
+
+for((i=0;i<${devi_iter};i=i+1)); do
+    echo "DEVI iteration ${i}, iter $iter, size $size"
+    for proc in ${procs[@]}; do
+        mpirun -n ${proc} ./${bin} $iter $size 1 | tee -a ${out}
+    done
+done

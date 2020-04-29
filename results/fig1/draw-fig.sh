@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ROOT_DIR=`pwd`/../..
+TOOL_DIR=`pwd`/../tools
 
 comm_time=`cat ${ROOT_DIR}/app/miniGhost/ref/minighost-profile.out | awk '{print $1}'`
 comp_time=`cat ${ROOT_DIR}/app/miniGhost/ref/minighost-profile.out | awk '{print $3}'`
@@ -58,5 +59,4 @@ sed -i '28 s/^/\t/' fig1.data
 sed -i "30c ${idle_time}" fig1.data
 sed -i '30 s/^/\t/' fig1.data
 
-python3 ../tools/Painter.py fig1.data fig1
-rm fig1.data
+python3 ${TOOL_DIR}/Painter.py fig1.data
