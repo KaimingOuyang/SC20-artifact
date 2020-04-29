@@ -1,9 +1,9 @@
 #!/bin/bash
 
 ROOT_DIR=`pwd`/../..
-echo ${ROOT_DIR}
-
-export PATH=${ROOT_DIR}/installed/mpich-pingpong-original/bin:$PATH
+# this parameter may be changed
+SLURM_PARAM="-N 4 -p bdwall"
+export PATH=${ROOT_DIR}/installed/mpich-std/bin:$PATH
 
 cd ${ROOT_DIR}/app/miniGhost && \
 git checkout remotes/origin/communication-imbalance-profile && \
@@ -17,7 +17,8 @@ if [ $stat -ne 0 ]; then
 fi
 
 # slurm script submission
-sbatch -N 4 -t 1:00:00 minighost-comm.job miniGhost.x
+cd ${ROOT_DIR}/results/fig1 && \
+sbatch ${SLURM_PARAM} minighost-comm.job ${ROOT_DIR}/app/miniGhost/ref/miniGhost.x
 
 
 
