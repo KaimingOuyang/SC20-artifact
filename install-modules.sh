@@ -47,7 +47,7 @@ if [ $stats -ne 0 ]; then
 fi
 
 INSTALLED_NAME=mpich-std
-sh install.sh ${INSTALLED_NAME}
+sh install.sh ${INSTALLED_NAME} 2>&1 | tee install.log
 
 git checkout rebase-pip-pingpong-original
 ./autogen.sh | tee autogen.log
@@ -60,7 +60,7 @@ fi
 # pingpong original broadwell
 INSTALLED_NAME=mpich-pingpong-original-bdw
 export MPICHLIB_CFLAGS="-DBEBOP -Wl,--dynamic-linker=${GLIBC_DIR}/lib/ld-2.17.so"
-sh install.sh ${INSTALLED_NAME}
+sh install.sh ${INSTALLED_NAME} 2>&1 | tee install.log
 
 stats=$?
 if [ $stats -ne 0 ]; then
@@ -70,7 +70,7 @@ fi
 # pingpong original KNL
 INSTALLED_NAME=mpich-pingpong-original-knl
 export MPICHLIB_CFLAGS="-DKNL -Wl,--dynamic-linker=${GLIBC_DIR}/lib/ld-2.17.so"
-sh install.sh ${INSTALLED_NAME}
+sh install.sh ${INSTALLED_NAME} 2>&1 | tee install.log
 
 stats=$?
 if [ $stats -ne 0 ]; then
@@ -81,7 +81,7 @@ fi
 git checkout rebase-pip-pingpong-localized
 INSTALLED_NAME=mpich-pingpong-localized-bdw
 export MPICHLIB_CFLAGS="-DBEBOP -DMPIDI_PIP_SHM_GET_STEALING -DENABLE_DYNAMIC_CHUNK -DMPIDI_PIP_SHM_ACC_STEALING -DMPIDI_PIP_OFI_ACC_STEALING -DMPIDI_PIP_STEALING_ENABLE -DENABLE_CONTIG_STEALING -DENABLE_NON_CONTIG_STEALING -DENABLE_OFI_STEALING -DENABLE_PARTNER_STEALING -Wl,--dynamic-linker=${GLIBC_DIR}/lib/ld-2.17.so"
-sh install.sh ${INSTALLED_NAME}
+sh install.sh ${INSTALLED_NAME} 2>&1 | tee install.log
 
 stats=$?
 if [ $stats -ne 0 ]; then
@@ -91,7 +91,7 @@ fi
 # pingpong localized knl
 INSTALLED_NAME=mpich-pingpong-localized-knl
 export MPICHLIB_CFLAGS="-DKNL -DMPIDI_PIP_SHM_GET_STEALING -DENABLE_DYNAMIC_CHUNK -DMPIDI_PIP_SHM_ACC_STEALING -DMPIDI_PIP_OFI_ACC_STEALING -DMPIDI_PIP_STEALING_ENABLE -DENABLE_CONTIG_STEALING -DENABLE_NON_CONTIG_STEALING -DENABLE_OFI_STEALING -DENABLE_PARTNER_STEALING -Wl,--dynamic-linker=${GLIBC_DIR}/lib/ld-2.17.so"
-sh install.sh ${INSTALLED_NAME}
+sh install.sh ${INSTALLED_NAME} 2>&1 | tee install.log
 
 stats=$?
 if [ $stats -ne 0 ]; then
@@ -102,7 +102,7 @@ fi
 git checkout rebase-pip-pingpong-mixed
 INSTALLED_NAME=mpich-pingpong-mixed-bdw
 export MPICHLIB_CFLAGS="-DBEBOP -DMPIDI_PIP_SHM_GET_STEALING -DENABLE_DYNAMIC_CHUNK -DMPIDI_PIP_SHM_ACC_STEALING -DMPIDI_PIP_OFI_ACC_STEALING -DMPIDI_PIP_STEALING_ENABLE -DENABLE_CONTIG_STEALING -DENABLE_NON_CONTIG_STEALING -DENABLE_OFI_STEALING -DENABLE_PARTNER_STEALING -Wl,--dynamic-linker=${GLIBC_DIR}/lib/ld-2.17.so"
-sh install.sh ${INSTALLED_NAME}
+sh install.sh ${INSTALLED_NAME} 2>&1 | tee install.log
 
 stats=$?
 if [ $stats -ne 0 ]; then
@@ -112,7 +112,7 @@ fi
 # pingpong mixed knl
 INSTALLED_NAME=mpich-pingpong-mixed-knl
 export MPICHLIB_CFLAGS="-DKNL -DMPIDI_PIP_SHM_GET_STEALING -DENABLE_DYNAMIC_CHUNK -DMPIDI_PIP_SHM_ACC_STEALING -DMPIDI_PIP_OFI_ACC_STEALING -DMPIDI_PIP_STEALING_ENABLE -DENABLE_CONTIG_STEALING -DENABLE_NON_CONTIG_STEALING -DENABLE_OFI_STEALING -DENABLE_PARTNER_STEALING -Wl,--dynamic-linker=${GLIBC_DIR}/lib/ld-2.17.so"
-sh install.sh ${INSTALLED_NAME}
+sh install.sh ${INSTALLED_NAME} 2>&1 | tee install.log
 
 stats=$?
 if [ $stats -ne 0 ]; then
@@ -124,7 +124,7 @@ fi
 git checkout rebase-pip-pingpong-throughput
 INSTALLED_NAME=mpich-pingpong-throughput-bdw
 export MPICHLIB_CFLAGS="-DBEBOP -DMPIDI_PIP_SHM_GET_STEALING -DENABLE_DYNAMIC_CHUNK -DMPIDI_PIP_SHM_ACC_STEALING -DMPIDI_PIP_OFI_ACC_STEALING -DMPIDI_PIP_STEALING_ENABLE -DENABLE_CONTIG_STEALING -DENABLE_NON_CONTIG_STEALING -DENABLE_OFI_STEALING -DENABLE_PARTNER_STEALING -Wl,--dynamic-linker=${GLIBC_DIR}/lib/ld-2.17.so"
-sh install.sh ${INSTALLED_NAME}
+sh install.sh ${INSTALLED_NAME} 2>&1 | tee install.log
 
 stats=$?
 if [ $stats -ne 0 ]; then
@@ -134,7 +134,7 @@ fi
 # pingpong throughput knl
 INSTALLED_NAME=mpich-pingpong-throughput-knl
 export MPICHLIB_CFLAGS="-DKNL -DMPIDI_PIP_SHM_GET_STEALING -DENABLE_DYNAMIC_CHUNK -DMPIDI_PIP_SHM_ACC_STEALING -DMPIDI_PIP_OFI_ACC_STEALING -DMPIDI_PIP_STEALING_ENABLE -DENABLE_CONTIG_STEALING -DENABLE_NON_CONTIG_STEALING -DENABLE_OFI_STEALING -DENABLE_PARTNER_STEALING -Wl,--dynamic-linker=${GLIBC_DIR}/lib/ld-2.17.so"
-sh install.sh ${INSTALLED_NAME}
+sh install.sh ${INSTALLED_NAME} 2>&1 | tee install.log
 
 stats=$?
 if [ $stats -ne 0 ]; then
@@ -146,7 +146,7 @@ fi
 git checkout rebase-pip-throughput-aware
 INSTALLED_NAME=mpich-throughput-aware-bdw
 export MPICHLIB_CFLAGS="-DBEBOP -DMPIDI_PIP_SHM_GET_STEALING -DENABLE_DYNAMIC_CHUNK -DMPIDI_PIP_SHM_ACC_STEALING -DMPIDI_PIP_OFI_ACC_STEALING -DMPIDI_PIP_STEALING_ENABLE -DENABLE_CONTIG_STEALING -DENABLE_NON_CONTIG_STEALING -DENABLE_OFI_STEALING -DENABLE_PARTNER_STEALING -Wl,--dynamic-linker=${GLIBC_DIR}/lib/ld-2.17.so"
-sh install.sh ${INSTALLED_NAME}
+sh install.sh ${INSTALLED_NAME} 2>&1 | tee install.log
 
 stats=$?
 if [ $stats -ne 0 ]; then
@@ -156,7 +156,7 @@ fi
 # throughput-aware knl
 INSTALLED_NAME=mpich-throughput-aware-knl
 export MPICHLIB_CFLAGS="-DKNL -DMPIDI_PIP_SHM_GET_STEALING -DENABLE_DYNAMIC_CHUNK -DMPIDI_PIP_SHM_ACC_STEALING -DMPIDI_PIP_OFI_ACC_STEALING -DMPIDI_PIP_STEALING_ENABLE -DENABLE_CONTIG_STEALING -DENABLE_NON_CONTIG_STEALING -DENABLE_OFI_STEALING -DENABLE_PARTNER_STEALING -Wl,--dynamic-linker=${GLIBC_DIR}/lib/ld-2.17.so"
-sh install.sh ${INSTALLED_NAME}
+sh install.sh ${INSTALLED_NAME} 2>&1 | tee install.log
 
 stats=$?
 if [ $stats -ne 0 ]; then
