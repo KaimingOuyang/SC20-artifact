@@ -14,7 +14,10 @@
 	path = deps/glibc
 	url = https://github.com/KaimingOuyang/PiP-glibc.git
 	branch = pip-glibc
+[submodule "app/cab-benchmark"]
+	path = app/cab-benchmark
+	url = https://github.com/KaimingOuyang/cab-benchmark.git
 [submodule "cab-mpi"]
 	path = cab-mpi
 	url = https://github.com/KaimingOuyang/mpich-pip.git
-	branch = rebase-pip-pingpong-original
+	branch = pmodel-master

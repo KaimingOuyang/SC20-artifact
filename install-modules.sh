@@ -36,6 +36,19 @@ fi
 
 # Benchmark branch compile
 cd ${ROOT_DIR}/cab-mpi
+
+# install standard MPICH
+git checkout pmodel-master
+./autogen.sh | tee autogen.log
+
+stats=$?
+if [ $stats -ne 0 ]; then
+    echo "autogen fails - please check autotools configuration"
+fi
+
+INSTALLED_NAME=mpich-std
+sh install.sh ${INSTALLED_NAME}
+
 git checkout rebase-pip-pingpong-original
 ./autogen.sh | tee autogen.log
 
