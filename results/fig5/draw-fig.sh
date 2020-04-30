@@ -32,11 +32,11 @@ function generate_datafile {
     local platform=$2
     local fig=$3
     cp data.template ${fig}
-    types=(localized mixed throughput)
+    zv=(256 4096 16384 65536 262144)
     line_num=17
-    for type in ${types[@]}; do
-        python3 ${TOOL_DIR}/parse_speedup.py pingpong-${task}-original-${platform}.out pingpong-${task}-${type}-${platform}.out | tee pingpong-${task}-${type}-${platform}.speedup
-        strings=$(parse_speedup pingpong-${task}-${type}-${platform}.speedup)
+    for z in ${zv[@]}; do
+        python3 ${TOOL_DIR}/parse_speedup.py pingpong-${task}-original-${platform}.out.${z} pingpong-${task}-throughput-${platform}.out.${z} | tee pingpong-${task}-throughput-${platform}.speedup.${z}
+        strings=$(parse_speedup pingpong-${task}-throughput-${platform}.speedup.${z})
         IFS=' ' read -r -a results <<< ${strings}
         key=${results[0]}
         speedup=${results[1]}
@@ -53,27 +53,22 @@ function generate_datafile {
     echo ${key}
 }
 
-# draw fig4 (a)
-generate_datafile msg bdw fig4a.data > /dev/null
-python3 ${TOOL_DIR}/Painter.py fig4a.data
+# draw fig5 (a)
+generate_datafile pack bdw fig5a.data > /dev/null
+python3 ${TOOL_DIR}/Painter.py fig5a.data
 
-# draw fig4 (b)
-generate_datafile msg knl fig4b.data > /dev/null
-python3 ${TOOL_DIR}/Painter.py fig4b.data
+# draw fig5 (b)
+key=$(generate_datafile pack knl fig5b.data)
+sed -i "4c ${key}" fig5b.data
+sed -i "4 s/^/\t/" fig5b.data
+python3 ${TOOL_DIR}/Painter.py fig5b.data
 
-# draw fig4 (c)
-key=$(generate_datafile procs bdw fig4c.data)
-sed -i "4c ${key}" fig4c.data
-sed -i "4 s/^/\t/" fig4c.data
-sed -i "8c #Processes" fig4c.data
-sed -i "8 s/^/\t/" fig4c.data
+# draw fig5 (c)
+generate_datafile pack-unpack bdw fig5c.data > /dev/null
+python3 ${TOOL_DIR}/Painter.py fig5c.data
 
-python3 ${TOOL_DIR}/Painter.py fig4c.data
-
-# draw fig4 (d)
-key=$(generate_datafile procs knl fig4d.data)
-sed -i "4c ${key}" fig4d.data
-sed -i "4 s/^/\t/" fig4d.data
-sed -i "8c #Processes" fig4d.data
-sed -i "8 s/^/\t/" fig4d.data
-python3 ${TOOL_DIR}/Painter.py fig4d.data
+# draw fig5 (d)
+key=$(generate_datafile pack-unpack knl fig5d.data)
+sed -i "4c ${key}" fig5d.data
+sed -i "4 s/^/\t/" fig5d.data
+python3 ${TOOL_DIR}/Painter.py fig5d.data
