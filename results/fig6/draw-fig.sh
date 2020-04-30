@@ -18,7 +18,7 @@ function parse_values {
         }
         printf(" ");
         for(i=0;i<cnt;++i){
-            printf("%.3f\\t", time[i]);
+            printf("%.3f\\t", values[i]);
         }
         printf(" ");
         for(i=0;i<cnt;++i){

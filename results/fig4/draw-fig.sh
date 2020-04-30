@@ -18,7 +18,7 @@ function parse_speedup {
         }
         printf(" ");
         for(i=0;i<cnt;++i){
-            printf("%.3f\\t", time[i]);
+            printf("%.3f\\t", speedup[i]);
         }
         printf(" ");
         for(i=0;i<cnt;++i){

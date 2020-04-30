@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+#SBATCH --job-name PingPong-bdw-ofi
+#SBATCH --mem-per-cpu=110G
+#SBATCH --time=4:00:00
+#SBATCH -N 1
+
+bin=$1
+out=$2
+devi_iter=5
+iter=100
+
+export BIND_MODE=SEQUENCE
+tile_dims=(64 128 256 512 1024)
+procs=(2 3 4 6 8 10 12 14 16 18 20 24 28 32 36)
+echo "bin=${bin} out=${out}"
+for tile_dim in ${tile_dims[@]}; do
+    outfile=${out}.${tile_dim}
+    (rm ${outfile} 2>&1) > /dev/null
+    for diter in `seq 1 ${devi_iter}`; do
+        for np in ${procs[@]}; do
+            echo "DEVI ITERATION ${diter} - tile_dim ${tile_dim}, np ${np}"
+            mpirun -n $np ./${bin} ${tile_dim} $iter | tee -a $outfile
+        done
+    done
+done
