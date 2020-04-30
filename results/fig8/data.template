@@ -1,0 +1,22 @@
+chart
+	BarChart
+xticks
+	Access Time (us)	L1 CM	L2 CM	L3 CM
+barwidth
+	0.3
+figsize
+	7	3
+legend_ncol
+	1
+barwidth
+	0.8
+xticks_font_size
+	11
+reset_style
+	False
+bar
+	W/O RTE
+	8415.613	2950	4156	1760
+bar
+	W/ RTE
+	7777.443	2950	3858	1308

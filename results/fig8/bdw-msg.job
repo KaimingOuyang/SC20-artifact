@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+#SBATCH --job-name PingPong-bdw-reverse
+#SBATCH --mem-per-cpu=110G
+#SBATCH --time=3:00:00
+#SBATCH -N 1
+
+bin=$1
+out=$2
+
+rm ${out} > /dev/null 2>&1
+echo "bin=$bin out=$out"
+
+devi_iter=5
+proc=36
+iter=20
+size=94371840 # 90MB
+
+for((i=0;i<${devi_iter};i=i+1)); do
+    echo "DEVI iteration ${i}, iter $iter, process $proc"
+    for size in ${size_array[@]}; do
+        mpirun -n ${proc} ./${bin} $iter $size 0 | tee -a ${out}
+    done
+done

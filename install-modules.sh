@@ -162,3 +162,9 @@ stats=$?
 if [ $stats -ne 0 ]; then
     echo "throughput mpich (knl) compilation fails"
 fi
+
+#pingpong throughput rev bdw
+git checkout rebase-pip-pingpong-throughput
+INSTALLED_NAME=mpich-throughput-rev-bdw
+export MPICHLIB_CFLAGS="-DBEBOP -DENABLE_REVERSE_TASK_ENQUEUE -DMPIDI_PIP_SHM_GET_STEALING -DENABLE_DYNAMIC_CHUNK -DMPIDI_PIP_SHM_ACC_STEALING -DMPIDI_PIP_OFI_ACC_STEALING -DMPIDI_PIP_STEALING_ENABLE -DENABLE_CONTIG_STEALING -DENABLE_NON_CONTIG_STEALING -DENABLE_OFI_STEALING -DENABLE_PARTNER_STEALING -Wl,--dynamic-linker=${GLIBC_DIR}/lib/ld-2.17.so"
+sh install.sh ${INSTALLED_NAME} 2>&1 | tee install.log
