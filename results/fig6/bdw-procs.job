@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+#SBATCH --job-name PingPong-bdw-ofi
+#SBATCH --mem-per-cpu=110G
+#SBATCH --time=4:00:00
+
+bin=$1
+out=$2
+devi_iter=5
+
+rm ${out} > /dev/null 2>&1
+export BIND_MODE=SEQUENCE
+procs=(2 4 6 {8..36..4} 44 52 60 68 72)
+z=256
+iter=100
+
+rm ${out} > /dev/null 2>&1
+
+echo "bin=$bin out=${out}"
+for((i=0;i<${devi_iter};i=i+1)); do
+    echo "DEVI iteration ${i}, proc ${proc}"
+    for proc in ${procs[@]}; do
+        mpirun -n ${proc} ./${bin} ${iter} ${z} 1 | tee -a ${out}
+    done
+done
