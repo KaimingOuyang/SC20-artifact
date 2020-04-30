@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+#SBATCH --job-name inter-bdw-task-bundle
+#SBATCH --mem-per-cpu=110G
+#SBATCH --time=4:00:00
+#SBATCH -N 1
+
+bin=$1
+out=$2
+devi_iter=5
+
+rm ${out} > /dev/null 2>&1
+export BIND_MODE=INTER-P2P
+proc=36
+zv=(256 4096 16384 65536 262144)
+iter=10
+
+echo "bin=$bin out=${out}"
+for((i=0;i<${devi_iter};i=i+1)); do
+    echo "DEVI iteration ${i}, proc ${proc}, iter ${iter}"
+    for z in ${zv[@]}; do 
+        mpirun -n ${proc} ./${bin} ${iter} ${z} 1 | awk -v z=${z} '{print z, $2/1000.0}' | tee -a ${out}
+    done
+done

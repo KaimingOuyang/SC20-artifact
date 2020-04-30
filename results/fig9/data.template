@@ -1,0 +1,27 @@
+chart
+	BarChart
+xticks
+	256	4K	16K	64K	256K
+xlabel
+	Z Dimension
+figsize
+	5	4.5
+barwidth
+	0.8
+bar
+	W/O Task Bundle
+	262	247	233	240	277
+bar
+	W/ Task Bundle
+	168	173	181	189	246
+xticks_font_size
+	13
+ylim
+	0	300
+secline
+	Speeup
+	1.556	1.428	1.29	1.27	1.126
+yseclabel
+	Speedup
+yseclim
+	1.0	1.8

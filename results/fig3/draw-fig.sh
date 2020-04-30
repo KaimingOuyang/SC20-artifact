@@ -17,11 +17,17 @@ for rmt in ${rmts[@]}; do
     }
     END{
         for(i=0;i<cnt;++i){
-            printf("%.3f\\t", time[i]);
+            if(i != cnt - 1)
+                printf("%.3f\\t", time[i]);
+            else
+                printf("%.3f", time[i]);
         }
         printf(" ");
         for(i=0;i<cnt;++i){
-            printf("%.3f\\t", devi[i]);
+            if(i != cnt - 1)
+                printf("%.3f\\t", devi[i]);
+            else
+                printf("%.3f", devi[i]);
         }
     }')
     IFS=' ' read -r -a results <<< ${strings}

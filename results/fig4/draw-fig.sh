@@ -14,15 +14,24 @@ function parse_speedup {
     }
     END{
         for(i=0;i<cnt;++i){
-            printf("%.3f\\t", key[i]);
+            if(i != cnt - 1)
+                printf("%.3f\\t", key[i]);
+            else
+                printf("%.3f", key[i]);
         }
         printf(" ");
         for(i=0;i<cnt;++i){
-            printf("%.3f\\t", speedup[i]);
+            if(i != cnt - 1)
+                printf("%.3f\\t", speedup[i]);
+            else
+                printf("%.3f", speedup[i]);
         }
         printf(" ");
         for(i=0;i<cnt;++i){
-            printf("%.3f\\t", devi[i]);
+            if(i != cnt - 1)
+                printf("%.3f\\t", devi[i]);
+            else
+                printf("%.3f", devi[i]);
         }
     }')
 }
