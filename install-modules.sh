@@ -231,7 +231,7 @@ sh install.sh ${INSTALLED_NAME} 2>&1 | tee install.log
 
 stats=$?
 if [ $stats -ne 0 ]; then
-    echo "throughput chunk chunk compilation fails"
+    echo "throughput chunk compilation fails"
     exit 1
 fi
 
