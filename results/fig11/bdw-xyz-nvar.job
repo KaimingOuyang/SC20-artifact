@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+#SBATCH --job-name mini-para-scan
+#SBATCH -N 16
+#SBATCH -p bdwall
+#SBATCH --mem-per-cpu=115G
+#SBATCH --time=12:00:00
+
+bin=$1
+out=$2
+
+px=8
+py=8
+pz=9
+xyz=(4 8 12 16 24 32 48 64 96 128 160 192 256)
+totalsz=134217728
+echo "file=$bin out=$out"
+devi_iter=3
+rm ${out} > /dev/null 2>&1
+export MINIGHOST_OUT=${out}
+for n in ${xyz[@]}; do
+    nvar=$((totalsz / (n+2) / (n+2) / (n+2)))
+    for j in `seq 1 ${devi_iter}`; do
+        mpirun -n 576 ./$bin --npx ${px} --npy ${py} --npz ${pz} --num_vars ${nvar} --nx ${n} --ny ${n} --nz ${n} --stencil 23 --num_tsteps 100
+    done
+done
