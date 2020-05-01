@@ -7,14 +7,14 @@ git submodule update --init --recursive
 
 # OpenBLAS
 cd ${ROOT_DIR}/deps/openblas && \
-make && \
+make CC=gcc FC=gfortran CXX=g++ && \
 make PREFIX=${ROOT_DIR}/lib/openblas install
 
 # PAPI
 cd ${ROOT_DIR}/deps/papi && \
 git checkout stable-5.7 && \
 cd src && \
-./configure --prefix=${ROOT_DIR}/lib/papi && make -j 4 && make install
+./configure CC=gcc FC=gfortran CXX=g++ --prefix=${ROOT_DIR}/lib/papi && make -j 4 && make install
 
 stat=$?
 if [ $stat -ne 0 ]; then
