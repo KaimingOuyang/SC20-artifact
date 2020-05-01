@@ -33,6 +33,7 @@ if [ $stat -ne 0 ]; then
     exit 1
 fi
 
+cd ${ROOT_DIR} && cp install.sh cab-mpi
 
 # Benchmark branch compile
 cd ${ROOT_DIR}/cab-mpi
