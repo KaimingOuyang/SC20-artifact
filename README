@@ -20,7 +20,7 @@ present in order to produce the corresponding figures.
 Installing modules, submitting jobs and generate figures are easy. Simply execute
 the following three command one by one.
 
-- compile all required modules (may take XX hours):
+- compile all required modules (may take 3 hours):
     sh install-modules.sh
 
 - submit jobs:
