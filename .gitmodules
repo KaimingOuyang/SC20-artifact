@@ -28,4 +28,4 @@
 [submodule "deps/papi"]
 	path = deps/papi
 	url = https://bitbucket.org/icl/papi.git
-	branch = master
+	branch = stable-5.7

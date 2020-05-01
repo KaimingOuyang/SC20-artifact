@@ -12,7 +12,7 @@ make PREFIX=${ROOT_DIR}/lib/openblas install
 
 # PAPI
 cd ${ROOT_DIR}/deps/papi && \
-git checkout tags/papi-5-7-0-t -b papi-5-7-0 && \
+git checkout stable-5.7 && \
 cd src && \
 ./configure --prefix=${ROOT_DIR}/lib/papi && make -j 4 && make install
 
