@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ROOT_DIR=`pwd`
-
+GLIBC_DIR=${ROOT_DIR}/lib/glibc
 # retrive modules
 git submodule update --init --recursive
 
