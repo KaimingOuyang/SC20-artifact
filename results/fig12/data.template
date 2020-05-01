@@ -1,0 +1,55 @@
+chart
+	BarChart
+xlabel
+	Method (#process)
+ylabel
+	Time (s)
+figsize
+	7	2.5
+xrotation
+	90
+legend_ncol
+	3
+barwidth
+	0.8
+font_size
+	10
+xticks_font_size
+	8
+reset_style
+	True
+legend_loc
+	top
+ylim
+	0	400
+stackbar
+	4
+	Fetch_and_OP
+	0.052	20.533	14.382	10.318	8.272	7.246	6.507	8.535	5.543	5.819	4.661
+	DGEMM
+	309.519	151.380	75.286	49.946	37.490	29.911	24.886	21.348	18.658	12.439	9.346
+	Get
+	22.864	55.814	40.870	35.505	32.620	32.032	32.327	31.420	32.513	39.767	42.573
+	Accumulate
+	45.412	113.451	155.301	161.967	157.314	151.078	144.883	132.173	127.219	120.234	115.071
+bar_xticks
+	Baseline(36)	Baseline(72)	Baseline(144)	Baseline(216)	Baseline(288)	Baseline(360)	Baseline(432)	Baseline(504)	Baseline(576)	Baseline(864)	Baseline(1152)
+stackbar
+	4
+	Fetch_and_OP
+	0.066	21.024	16.124	9.648	6.684	6.081	5.489	4.727	3.823	4.075	4.785
+	DGEMM
+	315.105	155.699	77.051	50.861	37.853	30.261	25.132	21.478	18.701	12.455	9.278
+	Get
+	19.514	57.097	35.622	31.399	29.176	28.375	28.469	28.834	28.549	37.178	38.922
+	Accumulate
+	20.026	73.408	73.376	98.576	100.648	104.569	108.193	107.910	105.106	103.827	101.704
+bar_xticks
+	CAB-MPI(36)	CAB-MPI(72)	CAB-MPI(144)	CAB-MPI(216)	CAB-MPI(288)	CAB-MPI(360)	CAB-MPI(432)	CAB-MPI(504)	CAB-MPI(576)	CAB-MPI(864)	CAB-MPI(1152)
+secline
+	Overall Speedup
+	1.065	1.110	1.412	1.352	1.351	1.301	1.247	1.188	1.179	1.073	1.111
+yseclim
+	1	1.5
+yseclabel
+	Speedup
