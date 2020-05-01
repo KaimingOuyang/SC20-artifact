@@ -5,6 +5,15 @@ ROOT_DIR=`pwd`
 # retrive modules
 git submodule update --init --recursive
 
+# OpenBLAS
+cd ${ROOT_DIR}/deps/openblas && \
+make && \
+make PREFIX=${ROOT_DIR}/lib/openblas install
+
+# PAPI
+cd ${ROOT_DIR}/deps/papi && git checkout tags/papi-5-7-0 -b papi-5-7-0 && \
+./configure --prefix=${ROOT_DIR}/lib/papi && make -j 4 && make install
+
 # Patched Glibc
 cd ${ROOT_DIR}/deps/glibc && mkdir build 
 cp build.sh build && \

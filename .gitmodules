@@ -21,3 +21,11 @@
 	path = cab-mpi
 	url = https://github.com/KaimingOuyang/mpich-pip.git
 	branch = pmodel-master
+[submodule "deps/openblas"]
+	path = deps/openblas
+	url = https://github.com/KaimingOuyang/OpenBLAS.git
+	branch = develop
+[submodule "deps/papi"]
+	path = deps/papi
+	url = https://bitbucket.org/icl/papi.git
+	branch = master
