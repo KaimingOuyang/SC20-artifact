@@ -6,7 +6,7 @@ System prerequisites:
     (3) gcc/gfortran 4.8.5
 
 ========================
-=== Get Started
+Get Started
 ========================
 The script by default uses slurm job scheduler; if the system the 
 script is running on has different job scheduler, you need to modify the 
