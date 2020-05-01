@@ -7,7 +7,7 @@ ROOT_DIR=$(pwd)/../../
 
 # pingpong touching time
 # original
-export PATH=$(ROOT_DIR)/installed/mpich-pingpong-original-bdw/bin:$PATH
+export PATH=$(ROOT_DIR)/installed/mpich-throughput-non-rev-bdw/bin:$PATH
 mpicc -o pingpong-original-time-bdw ${ROOT_DIR}/app/cab-benchmark/pingpong/pingpong-reverse.c
 sbatch ${SLURM_PARAM} bdw-msg.job pingpong-original-time-bdw pingpong-original-time-bdw.out
 
@@ -18,7 +18,7 @@ sbatch ${SLURM_PARAM} bdw-msg.job pingpong-throughput-time-bdw pingpong-throughp
 
 # pingpong cache misses
 # original
-export PATH=$(ROOT_DIR)/installed/mpich-pingpong-original-bdw/bin:$PATH
+export PATH=$(ROOT_DIR)/installed/mpich-throughput-non-rev-bdw/bin:$PATH
 mpicc -o pingpong-original-cm-bdw ${ROOT_DIR}/app/cab-benchmark/pingpong/pingpong-reverse-papi.c
 sbatch ${SLURM_PARAM} bdw-msg.job pingpong-original-cm-bdw pingpong-original-cm-bdw.out
 

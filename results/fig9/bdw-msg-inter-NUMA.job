@@ -11,7 +11,7 @@ devi_iter=5
 
 rm ${out} > /dev/null 2>&1
 export BIND_MODE=INTER-P2P
-proc=36
+proc=2
 zv=(256 4096 16384 65536 262144)
 iter=10
 

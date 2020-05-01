@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+#SBATCH --job-name chunk-bdw
+#SBATCH --mem-per-cpu=110G
+#SBATCH --time=12:00:00
+#SBATCH -N 1
+
+bin=$1
+out=$2
+
+export BIND_MODE=SEQUENCE
+rm ${out} > /dev/null 2>&1
+echo "bin=$bin out=$out"
+
+devi_iter=5
+proc=36
+iter=1000
+size_array=(65536 98304 131072 196608 262144 393216 524288 1048576 2097152 4194304 8388608)
+
+outfile=${out}
+rm ${outfile} 2>&1 > /dev/null
+for((i=0;i<${devi_iter};i=i+1)); do
+    echo "DEVI iteration ${i}, iter $iter, process $proc"
+    for size in ${size_array[@]}; do
+        mpirun -n ${proc} ./${bin} $iter $size 0 | tee -a ${outfile}
+    done
+done
