@@ -11,8 +11,16 @@ make && \
 make PREFIX=${ROOT_DIR}/lib/openblas install
 
 # PAPI
-cd ${ROOT_DIR}/deps/papi && git checkout tags/papi-5-7-0 -b papi-5-7-0 && \
+cd ${ROOT_DIR}/deps/papi && \
+git checkout tags/papi-5-7-0-t -b papi-5-7-0 && \
+cd src && \
 ./configure --prefix=${ROOT_DIR}/lib/papi && make -j 4 && make install
+
+stat=$?
+if [ $stat -ne 0 ]; then
+    echo "compile papi fails"
+    exit 1
+fi
 
 # Patched Glibc
 cd ${ROOT_DIR}/deps/glibc && mkdir build 
