@@ -1,27 +1,28 @@
 #!/bin/bash
 
 ROOT_DIR=$(pwd)/../../
+CFLAGS="-fpie -pie -rdynamic -pthread"
 ############################
 # Broadwell PingPong Test
 ############################
 # pingpong original msg bdw
 export PATH=${ROOT_DIR}/installed/mpich-pingpong-original-bdw/bin:$PATH
-mpicc -o pingpong-original-bdw ${ROOT_DIR}/app/cab-benchmark/pingpong/pingpong-algo.c
+mpicc ${CFLAGS} -o pingpong-original-bdw ${ROOT_DIR}/app/cab-benchmark/pingpong/pingpong-algo.c
 sbatch ${BDW_SLURM_PARAM} bdw-msg.job pingpong-original-bdw pingpong-msg-original-bdw.out
 
 # pingpong localized msg bdw
 export PATH=${ROOT_DIR}/installed/mpich-pingpong-localized-bdw/bin:$PATH
-mpicc -o pingpong-localized-bdw ${ROOT_DIR}/app/cab-benchmark/pingpong/pingpong-algo.c
+mpicc ${CFLAGS} -o pingpong-localized-bdw ${ROOT_DIR}/app/cab-benchmark/pingpong/pingpong-algo.c
 sbatch ${BDW_SLURM_PARAM} bdw-msg.job pingpong-localized-bdw pingpong-msg-localized-bdw.out
 
 # pingpong mixed msg bdw
 export PATH=${ROOT_DIR}/installed/mpich-pingpong-mixed-bdw/bin:$PATH
-mpicc -o pingpong-mixed-bdw ${ROOT_DIR}/app/cab-benchmark/pingpong/pingpong-algo.c
+mpicc ${CFLAGS} -o pingpong-mixed-bdw ${ROOT_DIR}/app/cab-benchmark/pingpong/pingpong-algo.c
 sbatch ${BDW_SLURM_PARAM} bdw-msg.job pingpong-mixed-bdw pingpong-msg-mixed-bdw.out
 
 # pingpong throughput msg bdw
 export PATH=${ROOT_DIR}/installed/mpich-pingpong-throughput-bdw/bin:$PATH
-mpicc -o pingpong-throughput-bdw ${ROOT_DIR}/app/cab-benchmark/pingpong/pingpong-algo.c
+mpicc ${CFLAGS} -o pingpong-throughput-bdw ${ROOT_DIR}/app/cab-benchmark/pingpong/pingpong-algo.c
 sbatch ${BDW_SLURM_PARAM} bdw-msg.job pingpong-throughput-bdw pingpong-msg-throughput-bdw.out
 
 # pingpong original procs bdw
@@ -45,22 +46,22 @@ sbatch ${BDW_SLURM_PARAM} bdw-procs.job pingpong-throughput-bdw pingpong-procs-t
 ############################
 # pingpong original msg knl
 export PATH=${ROOT_DIR}/installed/mpich-pingpong-original-knl/bin:$PATH
-mpicc -o pingpong-original-knl ${ROOT_DIR}/app/cab-benchmark/pingpong/pingpong-algo.c
+mpicc ${CFLAGS} -o pingpong-original-knl ${ROOT_DIR}/app/cab-benchmark/pingpong/pingpong-algo.c
 sbatch ${KNL_SLURM_PARAM} knl-msg.job pingpong-original-knl pingpong-msg-original-knl.out
 
 # pingpong localized msg knl
 export PATH=${ROOT_DIR}/installed/mpich-pingpong-localized-knl/bin:$PATH
-mpicc -o pingpong-localized-knl ${ROOT_DIR}/app/cab-benchmark/pingpong/pingpong-algo.c
+mpicc ${CFLAGS} -o pingpong-localized-knl ${ROOT_DIR}/app/cab-benchmark/pingpong/pingpong-algo.c
 sbatch ${KNL_SLURM_PARAM} knl-msg.job pingpong-localized-knl pingpong-msg-localized-knl.out
 
 # pingpong mixed msg knl
 export PATH=${ROOT_DIR}/installed/mpich-pingpong-mixed-knl/bin:$PATH
-mpicc -o pingpong-mixed-knl ${ROOT_DIR}/app/cab-benchmark/pingpong/pingpong-algo.c
+mpicc ${CFLAGS} -o pingpong-mixed-knl ${ROOT_DIR}/app/cab-benchmark/pingpong/pingpong-algo.c
 sbatch ${KNL_SLURM_PARAM} knl-msg.job pingpong-mixed-knl pingpong-msg-mixed-knl.out
 
 # pingpong throughput msg knl
 export PATH=${ROOT_DIR}/installed/mpich-pingpong-throughput-knl/bin:$PATH
-mpicc -o pingpong-throughput-knl ${ROOT_DIR}/app/cab-benchmark/pingpong/pingpong-algo.c
+mpicc ${CFLAGS} -o pingpong-throughput-knl ${ROOT_DIR}/app/cab-benchmark/pingpong/pingpong-algo.c
 sbatch ${KNL_SLURM_PARAM} knl-msg.job pingpong-throughput-knl pingpong-msg-throughput-knl.out
 
 # pingpong original procs knl
