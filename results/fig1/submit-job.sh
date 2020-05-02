@@ -17,7 +17,7 @@ fi
 
 # slurm script submission
 cd ${ROOT_DIR}/results/fig1 && \
-sbatch ${SLURM_PARAM} minighost-comm.job ${ROOT_DIR}/app/miniGhost/ref/miniGhost.x-profile
+sbatch ${BDW_SLURM_PARAM} minighost-comm.job ${ROOT_DIR}/app/miniGhost/ref/miniGhost.x-profile
 
 
 

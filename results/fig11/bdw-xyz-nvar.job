@@ -21,6 +21,6 @@ export MINIGHOST_OUT=${out}
 for n in ${xyz[@]}; do
     nvar=$((totalsz / (n+2) / (n+2) / (n+2)))
     for j in `seq 1 ${devi_iter}`; do
-        mpirun -n 576 ./$bin --npx ${px} --npy ${py} --npz ${pz} --num_vars ${nvar} --nx ${n} --ny ${n} --nz ${n} --stencil 23 --num_tsteps 100
+        mpirun -n 576 $bin --npx ${px} --npy ${py} --npz ${pz} --num_vars ${nvar} --nx ${n} --ny ${n} --nz ${n} --stencil 23 --num_tsteps 100
     done
 done

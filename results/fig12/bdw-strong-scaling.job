@@ -20,6 +20,6 @@ echo "bin=${bin} out=${outfile}"
 (rm ${outfile} 2>&1) > /dev/null
 for diter in `seq 1 ${devi_iter}`; do
 	echo "DEVI ITERATION ${diter} - np ${np}, dim ${tile_dim}, tile_num ${tile_num}"
-	mpirun -n ${np} -ppn ${ppn} ./${bin} ${tile_dim} ${tile_num} | tee -a $outfile
+	mpirun -n ${np} -ppn ${ppn} ${bin} ${tile_dim} ${tile_num} | tee -a $outfile
 done
 #python3 parse_msg.py $outfile | tee ${outfile}.final

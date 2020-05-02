@@ -16,4 +16,4 @@ pz=6
 n=50
 nvar=100
 
-mpirun -n ${np} ./$bin --npx ${px} --npy ${py} --npz ${pz} --num_vars ${nvar} --nx ${n} --ny ${n} --nz ${n} --stencil 23 --num_tsteps 100
+mpirun -n ${np} $bin --npx ${px} --npy ${py} --npz ${pz} --num_vars ${nvar} --nx ${n} --ny ${n} --nz ${n} --stencil 23 --num_tsteps 100
