@@ -8,6 +8,7 @@ rmts=(0 1 2 3 4 8 18)
 line_num=15
 
 for rmt in ${rmts[@]}; do
+    python3 ${TOOL_DIR}/parse_values.py throughput-measure.out.${rmt} | tee throughput-measure.out.${rmt}.final
     strings=$(cat throughput-measure.out.${rmt}.final | awk 'BEGIN{
         cnt = 0;
     }{

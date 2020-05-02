@@ -8,8 +8,14 @@ CURR_DIR=$(pwd)
 export PATH=${ROOT_DIR}/installed/mpich-pingpong-original-bdw/bin:$PATH
 cd ${ROOT_DIR}/app/BSPMM && \
 make clean && \
-make LDFLAGS="-L${ROOT_DIR}/lib/openblas/lib -Wl,-rpath=${ROOT_DIR}/lib/openblas/lib -lopenblas" && \
+make LDFLAGS="-L${ROOT_DIR}/lib/openblas/lib -Wl,-rpath=${ROOT_DIR}/lib/openblas/lib -lopenblas" C_INCLUDE="-I${ROOT_DIR}/lib/openblas/include" && \
 mv bspmm_profile bspmm_profile_original
+
+stats=$?
+if [ $stats != 0 ]; then
+	echo "BSPMM compilation error"
+	exit 1
+fi
 
 nodes=(1 2 3 4 6 8 10 12 14 16 24 32)
 #jobid=
