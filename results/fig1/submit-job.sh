@@ -4,7 +4,7 @@ ROOT_DIR=`pwd`/../..
 export PATH=${ROOT_DIR}/installed/mpich-std/bin:$PATH
 
 cd ${ROOT_DIR}/app/miniGhost && \
-git checkout communication-imbalance-profile && \
+git checkout -f communication-imbalance-profile && \
 cd ref && \
 make clean && make && \
 mv miniGhost.x miniGhost.x-profile
