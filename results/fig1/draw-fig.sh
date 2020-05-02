@@ -3,9 +3,9 @@
 ROOT_DIR=`pwd`/../..
 TOOL_DIR=`pwd`/../tools
 
-comm_time=`cat ${ROOT_DIR}/app/miniGhost/ref/minighost-profile.out | awk '{print $1}'`
-comp_time=`cat ${ROOT_DIR}/app/miniGhost/ref/minighost-profile.out | awk '{print $3}'`
-strings=$(cat ${ROOT_DIR}/app/miniGhost/ref/minighost-profile.out | awk 'BEGIN{
+comm_time=`cat ./minighost-profile.out | awk '{print $1}'`
+comp_time=`cat ./minighost-profile.out | awk '{print $3}'`
+strings=$(cat ./minighost-profile.out | awk 'BEGIN{
     cnt = 0;
     max = 0.0;
 }
