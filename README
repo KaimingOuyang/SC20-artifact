@@ -1,4 +1,3 @@
-# SC20-artifact
 SC20 artifact contains scripts and softwares to reproduce our results.
 System prerequisites:
     (1) python3.*
@@ -9,7 +8,7 @@ System prerequisites:
 Get Started
 ========================
 The script by default uses slurm job scheduler; if the system the 
-script is running on has different job scheduler, you need to modify the 
+script is running on has different job scheduler, you may need to modify the 
 job scripts in reults/*/*.job accordingly. If slurm job scheduler is used, 
 but job partition name is different, please modify the "BDW_PARTITION" and
 "KNL_PARTITION" to the correct partition name.
