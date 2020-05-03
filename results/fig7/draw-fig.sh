@@ -14,6 +14,7 @@ function parse_speedup {
     }
     END{
         for(i=0;i<cnt;++i){
+            
             if(i != cnt - 1)
                 printf("%d\\t", key[i]);
             else
@@ -71,8 +72,14 @@ fi
 
 # draw fig7 (b)
 key=$(generate_datafile inter fig7b.data) && \
-for i in ${!key[@]}; do
-    key[i]=$((key[i] / 2))
+tmp=$(echo ${key} | tr "\t" " ") && \
+IFS=' ' read -r -a results <<< ${tmp} && \
+for i in ${!results[@]}; do
+    if [ $i == 0 ]; then
+        key="$((${results[i]} / 2))"
+    else
+        key="${key}\t$((${results[i]} / 2))"
+    fi
 done
 sed -i "4c ${key}" ${fig} && \
 sed -i "4 s/^/\t/" ${fig} && \

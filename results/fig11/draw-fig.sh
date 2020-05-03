@@ -64,7 +64,6 @@ for i in ${!orig_time[@]}; do
     fi
 done
 
-echo speedup=${speedup}
 sed -i "47c ${speedup}" fig11.data && \
 sed -i "47 s/^/\t/" fig11.data
 
