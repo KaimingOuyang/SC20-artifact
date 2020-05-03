@@ -11,7 +11,7 @@ devi_iter=5
 
 rm ${out} > /dev/null 2>&1
 export BIND_MODE=SEQUENCE
-procs=(2 4 6 {8..36..4} 44 52 60 68 72)
+procs=(4 6 {8..36..4} 44 52 60 68 72)
 z=256
 iter=100
 

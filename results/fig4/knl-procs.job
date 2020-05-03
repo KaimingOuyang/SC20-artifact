@@ -16,7 +16,7 @@ size=8388608
 iter=1000
 export BIND_MODE=INTER-P2P
 echo "BIND_MODE=$BIND_MODE bin=${bin} out=${out}"
-procs=(4 6 8 16 18 20 24 28 32 36 40 48 56 64)
+procs=(2 4 6 8 16 18 20 24 28 32 36 40 48 56 64)
 
 for((i=0;i<${devi_iter};i=i+1)); do
     echo "DEVI iteration ${i}, iter $iter, size $size"

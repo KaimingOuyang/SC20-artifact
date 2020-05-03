@@ -1,7 +1,7 @@
 chart
 	LineChart
 xticks
-	2	3	4	6	7	8	9	10	12	14	16	18	24	30	36
+	2	3	4	6	8	10	12	14	16	18	20	24	28	32	36
 xlabel
 	#Processes
 figsize
