@@ -3,7 +3,7 @@
 ROOT_DIR=$(pwd)/../../
 CFLAGS="-fpie -pie -rdynamic -pthread"
 ############################
-# Broadwell PingPong Non-contig Test
+# Broadwell PingPong dynamic chunk Test
 ############################
 
 # pingpong touching time

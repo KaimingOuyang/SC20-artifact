@@ -3,7 +3,7 @@
 ROOT_DIR=$(pwd)/../../
 CFLAGS="-fpie -pie -rdynamic -pthread"
 ############################
-# Broadwell PingPong Non-contig Test
+# Broadwell PingPong inter-node Test
 ############################
 # pingpong original procs bdw
 export PATH=${ROOT_DIR}/installed/mpich-pingpong-original-bdw/bin:$PATH
