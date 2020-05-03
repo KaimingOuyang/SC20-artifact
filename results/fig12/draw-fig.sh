@@ -14,7 +14,7 @@ function parse_speedup {
     }
     END{
         for(i=0;i<cnt;++i){
-            printf("%.3f\\t", key[i]);
+            printf("%d\\t", key[i]);
         }
         printf(" ");
         for(i=0;i<cnt;++i){
