@@ -13,5 +13,9 @@ for folder in ${folders[@]}; do
     if [ $stats != 0 ]; then
         echo "Generate figures in ${folder} fails"
         exit 1
+    else
+        echo "[SUCCESS] Generate ${folder} complete"
     fi
 done
+
+echo "[Done] please check figrues in results/figures folder"
