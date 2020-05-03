@@ -15,9 +15,9 @@ function parse_speedup {
     END{
         for(i=0;i<cnt;++i){
             if(i != cnt - 1)
-                printf("%.3f\\t", key[i]);
+                printf("%d\\t", key[i]);
             else
-                printf("%.3f", key[i]);
+                printf("%d", key[i]);
         }
         printf(" ");
         for(i=0;i<cnt;++i){
@@ -44,7 +44,7 @@ function generate_datafile {
     zv=(256 4096 16384 65536 262144)
     line_num=17
     for z in ${zv[@]}; do
-        python3 ${TOOL_DIR}/parse_speedup.py pingpong-${task}-original-${platform}.out.${z} pingpong-${task}-throughput-${platform}.out.${z} | tee pingpong-${task}-throughput-${platform}.speedup.${z}
+        python3 ${TOOL_DIR}/parse_speedup.py pingpong-${task}-original-${platform}.out.${z} pingpong-${task}-throughput-${platform}.out.${z} > pingpong-${task}-throughput-${platform}.speedup.${z}
         strings=$(parse_speedup pingpong-${task}-throughput-${platform}.speedup.${z})
         IFS=' ' read -r -a results <<< ${strings}
         key=${results[0]}
@@ -63,21 +63,45 @@ function generate_datafile {
 }
 
 # draw fig5 (a)
-generate_datafile pack bdw fig5a.data > /dev/null
+generate_datafile pack bdw fig5a.data > /dev/null && \
 python3 ${TOOL_DIR}/Painter.py fig5a.data
 
+stats=$?
+if [ $stats != 0 ]; then
+    echo "generate fig5 (a) fails"
+    exit 1
+fi
+
 # draw fig5 (b)
-key=$(generate_datafile pack knl fig5b.data)
-sed -i "4c ${key}" fig5b.data
-sed -i "4 s/^/\t/" fig5b.data
+key=$(generate_datafile pack knl fig5b.data) && \
+sed -i "4c ${key}" fig5b.data && \
+sed -i "4 s/^/\t/" fig5b.data && \
 python3 ${TOOL_DIR}/Painter.py fig5b.data
 
+stats=$?
+if [ $stats != 0 ]; then
+    echo "generate fig5 (b) fails"
+    exit 1
+fi
+
 # draw fig5 (c)
-generate_datafile pack-unpack bdw fig5c.data > /dev/null
+generate_datafile pack-unpack bdw fig5c.data > /dev/null && \
 python3 ${TOOL_DIR}/Painter.py fig5c.data
 
+stats=$?
+if [ $stats != 0 ]; then
+    echo "generate fig5 (c) fails"
+    exit 1
+fi
+
 # draw fig5 (d)
-key=$(generate_datafile pack-unpack knl fig5d.data)
-sed -i "4c ${key}" fig5d.data
-sed -i "4 s/^/\t/" fig5d.data
+key=$(generate_datafile pack-unpack knl fig5d.data) && \
+sed -i "4c ${key}" fig5d.data && \
+sed -i "4 s/^/\t/" fig5d.data && \
 python3 ${TOOL_DIR}/Painter.py fig5d.data
+
+stats=$?
+if [ $stats != 0 ]; then
+    echo "generate fig5 (d) fails"
+    exit 1
+fi

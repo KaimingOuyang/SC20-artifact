@@ -42,8 +42,8 @@ function generate_datafile {
     local fig=$3
     cp data.template ${fig}
     line_num=17
-    python3 ${TOOL_DIR}/parse_values.py pingpong-${task}-original-${platform}.out | tee pingpong-${task}-original-${platform}.out.final
-    python3 ${TOOL_DIR}/parse_values.py pingpong-${task}-throughput-${platform}.out | tee pingpong-${task}-throughput-${platform}.out.final
+    python3 ${TOOL_DIR}/parse_values.py pingpong-${task}-original-${platform}.out > pingpong-${task}-original-${platform}.out.final
+    python3 ${TOOL_DIR}/parse_values.py pingpong-${task}-throughput-${platform}.out > pingpong-${task}-throughput-${platform}.out.final
 
     strings=$(parse_values pingpong-${task}-original-${platform}.out.final)
     IFS=' ' read -r -a results <<< ${strings}
@@ -59,6 +59,6 @@ function generate_datafile {
     sed -i "${line_num} s/^/\t/" ${fig}
 }
 
-# draw fig5 (a)
-generate_datafile ofi bdw fig6.data
+# draw fig6
+generate_datafile ofi bdw fig6.data && \
 python3 ${TOOL_DIR}/Painter.py fig6.data

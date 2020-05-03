@@ -43,7 +43,7 @@ function generate_datafile {
     line_num=17
     tile_dims=(64 128 256 512 1024)
     for tile_dim in ${tile_dims[@]}; do
-        python3 ${TOOL_DIR}/parse_speedup.py accumulate-original-${type}-bdw.out.${tile_dim} accumulate-throughput-${type}-bdw.out.${tile_dim} | tee accumulate-throughput-${type}-bdw.speedup.${tile_dim}
+        python3 ${TOOL_DIR}/parse_speedup.py accumulate-original-${type}-bdw.out.${tile_dim} accumulate-throughput-${type}-bdw.out.${tile_dim} > accumulate-throughput-${type}-bdw.speedup.${tile_dim}
         strings=$(parse_speedup accumulate-throughput-${type}-bdw.speedup.${tile_dim})
         IFS=' ' read -r -a results <<< ${strings}
         key=${results[0]}
@@ -60,16 +60,28 @@ function generate_datafile {
 }
 
 # draw fig7 (a)
-generate_datafile intra fig7a.data > /dev/null
-python3 ${TOOL_DIR}/Painter.py fig7a.data
+generate_datafile intra fig7a.data > /dev/null && \
+python3 ${TOOL_DIR}/Painter.py fig7a.data 
+
+stats=$?
+if [ $stats != 0 ]; then
+    echo "generate fig7 (a) fails"
+    exit 1
+fi
 
 # draw fig7 (b)
-key=$(generate_datafile inter fig7b.data)
+key=$(generate_datafile inter fig7b.data) && \
 for i in ${!key[@]}; do
     key[i]=$((key[i] / 2))
 done
-sed -i "4c ${key}" ${fig}
-sed -i "4 s/^/\t/" ${fig}
-sed -i "6c #Processes (On Node 1)" ${fig}
-sed -i "6 s/^/\t/" ${fig}
+sed -i "4c ${key}" ${fig} && \
+sed -i "4 s/^/\t/" ${fig} && \
+sed -i "6c #Processes (On Node 1)" ${fig} && \
+sed -i "6 s/^/\t/" ${fig} && \
 python3 ${TOOL_DIR}/Painter.py fig7b.data
+
+stats=$?
+if [ $stats != 0 ]; then
+    echo "generate fig7 (b) fails"
+    exit 1
+fi
