@@ -15,9 +15,9 @@ function parse_speedup {
     END{
         for(i=0;i<cnt;++i){
             if(i != cnt - 1)
-                printf("%.3f\\t", key[i]);
+                printf("%d\\t", key[i]);
             else
-                printf("%.3f", key[i]);
+                printf("%d", key[i]);
         }
         printf(" ");
         for(i=0;i<cnt;++i){
@@ -44,7 +44,7 @@ function generate_datafile {
     types=(localized mixed throughput)
     line_num=17
     for type in ${types[@]}; do
-        python3 ${TOOL_DIR}/parse_speedup.py pingpong-${task}-original-${platform}.out pingpong-${task}-${type}-${platform}.out | tee pingpong-${task}-${type}-${platform}.speedup
+        python3 ${TOOL_DIR}/parse_speedup.py pingpong-${task}-original-${platform}.out pingpong-${task}-${type}-${platform}.out > pingpong-${task}-${type}-${platform}.speedup
         strings=$(parse_speedup pingpong-${task}-${type}-${platform}.speedup)
         IFS=' ' read -r -a results <<< ${strings}
         key=${results[0]}
@@ -63,26 +63,49 @@ function generate_datafile {
 }
 
 # draw fig4 (a)
-generate_datafile msg bdw fig4a.data > /dev/null
+generate_datafile msg bdw fig4a.data > /dev/null  && \
 python3 ${TOOL_DIR}/Painter.py fig4a.data
 
+stats=$?
+if [ $stats != 0 ]; then
+    echo "generate fig4 (a) fails"
+    exit 1
+fi
+
 # draw fig4 (b)
-generate_datafile msg knl fig4b.data > /dev/null
+generate_datafile msg knl fig4b.data > /dev/null  && \
 python3 ${TOOL_DIR}/Painter.py fig4b.data
 
-# draw fig4 (c)
-key=$(generate_datafile procs bdw fig4c.data)
-sed -i "4c ${key}" fig4c.data
-sed -i "4 s/^/\t/" fig4c.data
-sed -i "8c #Processes" fig4c.data
-sed -i "8 s/^/\t/" fig4c.data
+stats=$?
+if [ $stats != 0 ]; then
+    echo "generate fig4 (b) fails"
+    exit 1
+fi
 
+# draw fig4 (c)
+key=$(generate_datafile procs bdw fig4c.data) && \
+sed -i "4c ${key}" fig4c.data && \
+sed -i "4 s/^/\t/" fig4c.data && \
+sed -i "8c #Processes" fig4c.data && \
+sed -i "8 s/^/\t/" fig4c.data  && \
 python3 ${TOOL_DIR}/Painter.py fig4c.data
 
+stats=$?
+if [ $stats != 0 ]; then
+    echo "generate fig4 (c) fails"
+    exit 1
+fi
+
 # draw fig4 (d)
-key=$(generate_datafile procs knl fig4d.data)
-sed -i "4c ${key}" fig4d.data
-sed -i "4 s/^/\t/" fig4d.data
-sed -i "8c #Processes" fig4d.data
-sed -i "8 s/^/\t/" fig4d.data
+key=$(generate_datafile procs knl fig4d.data) && \
+sed -i "4c ${key}" fig4d.data && \
+sed -i "4 s/^/\t/" fig4d.data && \
+sed -i "8c #Processes" fig4d.data && \
+sed -i "8 s/^/\t/" fig4d.data && \
 python3 ${TOOL_DIR}/Painter.py fig4d.data
+
+stats=$?
+if [ $stats != 0 ]; then
+    echo "generate fig4 (d) fails"
+    exit 1
+fi

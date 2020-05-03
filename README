@@ -31,3 +31,7 @@ folder after executing "sh draw-figs.sh".
 
 If you need to reproduce results one by one, you can enter results/* to submit
 job and draw figures individually.
+
+Note: the size of dataset in our tests are generated based on memory size of 
+128 GB broadwell and 96 GB KNL node. Using nodes with smaller memory size may
+cause insufficient memory error.
