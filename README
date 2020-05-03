@@ -9,7 +9,7 @@ Get Started
 ========================
 The script by default uses slurm job scheduler; if the system the 
 script is running on has different job scheduler, you may need to modify the 
-job scripts in reults/*/*.job accordingly. If slurm job scheduler is used, 
+job scripts in results/*/*.job accordingly. If slurm job scheduler is used, 
 but job partition name is different, please modify the "BDW_PARTITION" and
 "KNL_PARTITION" to the correct partition name.
 
@@ -17,7 +17,8 @@ After all jobs are finished, please make sure python3 and matplotlib library is
 present in order to produce the corresponding figures.
 
 Installing modules, submitting jobs and generate figures are easy. Simply execute
-the following three command one by one.
+the following three command one by one. Figures will be put in results/figures 
+folder after executing "sh draw-figs.sh".
 
 - compile all required modules (may take 3 hours):
     sh install-modules.sh

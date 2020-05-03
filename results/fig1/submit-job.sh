@@ -3,6 +3,8 @@
 ROOT_DIR=`pwd`/../..
 export PATH=${ROOT_DIR}/installed/mpich-std/bin:$PATH
 
+rm minighost-profile.out 2>&1 > /dev/null
+
 cd ${ROOT_DIR}/app/miniGhost && \
 git checkout -f communication-imbalance-profile && \
 cd ref && \
