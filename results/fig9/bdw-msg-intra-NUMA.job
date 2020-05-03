@@ -2,7 +2,7 @@
 #
 #SBATCH --job-name intra-bdw-task-bundle
 #SBATCH --mem-per-cpu=110G
-#SBATCH --time=4:00:00
+#SBATCH --time=6:00:00
 #SBATCH -N 1
 
 bin=$1

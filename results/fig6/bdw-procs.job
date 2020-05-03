@@ -2,7 +2,7 @@
 #
 #SBATCH --job-name PingPong-bdw-ofi
 #SBATCH --mem-per-cpu=110G
-#SBATCH --time=4:00:00
+#SBATCH --time=6:00:00
 #SBATCH -N 2
 
 bin=$1

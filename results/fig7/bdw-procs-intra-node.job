@@ -2,7 +2,7 @@
 #
 #SBATCH --job-name PingPong-bdw-ofi
 #SBATCH --mem-per-cpu=110G
-#SBATCH --time=4:00:00
+#SBATCH --time=6:00:00
 #SBATCH -N 1
 
 bin=$1
@@ -11,7 +11,7 @@ devi_iter=5
 iter=100
 
 export BIND_MODE=SEQUENCE
-tile_dims=(64 128 256 512 1024)
+tile_dims=(128 256 512 1024)
 procs=(2 3 4 6 8 10 12 14 16 18 20 24 28 32 36)
 echo "bin=${bin} out=${out}"
 for tile_dim in ${tile_dims[@]}; do

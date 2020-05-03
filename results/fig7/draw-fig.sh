@@ -41,7 +41,7 @@ function generate_datafile {
     local fig=$2
     cp data.template ${fig}
     line_num=17
-    tile_dims=(64 128 256 512 1024)
+    tile_dims=(128 256 512 1024)
     for tile_dim in ${tile_dims[@]}; do
         python3 ${TOOL_DIR}/parse_speedup.py accumulate-original-${type}-bdw.out.${tile_dim} accumulate-throughput-${type}-bdw.out.${tile_dim} > accumulate-throughput-${type}-bdw.speedup.${tile_dim}
         strings=$(parse_speedup accumulate-throughput-${type}-bdw.speedup.${tile_dim})
