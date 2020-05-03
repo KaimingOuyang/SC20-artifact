@@ -5,7 +5,7 @@
 #SBATCH --mem-per-cpu=110G
 #SBATCH --time=12:00:00
 
-devi_iter=1
+devi_iter=3
 bin=$1
 out=$2
 N=$3

@@ -43,7 +43,8 @@ cp data.template fig10.data
 line_num=21
 for chunk in ${chunk_sizes[@]}; do
     python3 ${TOOL_DIR}/parse_values.py pingpong-fix-chunk-bdw.out.${chunk} > pingpong-fix-chunk-bdw.out.${chunk}.final
-    results=$(parse_speedup pingpong-fix-chunk-bdw.out.${chunk}.final)
+    strings=$(parse_speedup pingpong-fix-chunk-bdw.out.${chunk}.final)
+    IFS=' ' read -r -a results <<< ${strings}
     time=${results[1]}
     sed -i "${line_num}c ${time}" fig10.data
     sed -i "${line_num} s/^/\t/" fig10.data
@@ -51,7 +52,8 @@ for chunk in ${chunk_sizes[@]}; do
 done
 
 python3 ${TOOL_DIR}/parse_values.py pingpong-dynamic-chunk-bdw.out > pingpong-dynamic-chunk-bdw.out.final
-results=$(parse_speedup pingpong-dynamic-chunk-bdw.out.final)
+strings=$(parse_speedup pingpong-dynamic-chunk-bdw.out.final)
+IFS=' ' read -r -a results <<< ${strings}
 time=${results[1]}
 sed -i "${line_num}c ${time}" fig10.data
 sed -i "${line_num} s/^/\t/" fig10.data

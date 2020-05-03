@@ -1,8 +1,8 @@
 #!/bin/bash
 
-export TOOL_DIR=`pwd`/../tools
+export TOOL_DIR=$(pwd)/../tools
 
-function parse_speedup {
+function parse_speedup() {
     local file=$1
     echo $(cat ${file} | awk 'BEGIN{
         cnt = 0;
@@ -39,10 +39,14 @@ function parse_speedup {
 # draw fig9(a)
 cp data.template fig9a.data
 
-parse_speedup pingpong-original-tb-intra-bdw.out | IFS=' ' read -r -a results
+python3 ${TOOL_DIR}/parse_values.py pingpong-original-tb-intra-bdw.out > pingpong-original-tb-intra-bdw.out.final && \
+tmp=$(parse_speedup pingpong-original-tb-intra-bdw.out.final)
+IFS=' ' read -r -a results <<< ${tmp}
 orig_intra=${results[1]}
 
-parse_speedup pingpong-throughput-tb-intra-bdw.out | IFS=' ' read -r -a results
+python3 ${TOOL_DIR}/parse_values.py pingpong-throughput-tb-intra-bdw.out > pingpong-throughput-tb-intra-bdw.out.final && \
+tmp=$(parse_speedup pingpong-throughput-tb-intra-bdw.out.final)
+IFS=' ' read -r -a results <<< ${tmp}
 thp_intra=${results[1]}
 
 tmp=$(echo -e ${orig_intra} | tr "\t" " ")
@@ -55,6 +59,7 @@ for i in ${!orig_intra_array[@]}; do
         speedup_intra="${speedup_intra}\t$(echo "scale=3;${orig_intra_array[i]}/${thp_intra_array[i]}" | bc)"
     else
         speedup_intra="$(echo "scale=3;${orig_intra_array[i]}/${thp_intra_array[i]}" | bc)"
+    fi
 done
 
 sed -i "13c ${orig_intra_array}" fig9a.data
@@ -69,10 +74,14 @@ python3 ${TOOL_DIR}/Painter.py fig9a.data
 #draw fig9(b)
 cp data.template fig9b.data
 
-parse_speedup pingpong-original-tb-inter-bdw.out | IFS=' ' read -r -a results
+python3 ${TOOL_DIR}/parse_values.py pingpong-original-tb-inter-bdw.out > pingpong-original-tb-inter-bdw.out.final && \
+tmp=$(parse_speedup pingpong-original-tb-inter-bdw.out.final)
+IFS=' ' read -r -a results <<< ${tmp}
 orig_inter=${results[1]}
 
-parse_speedup pingpong-throughput-tb-inter-bdw.out | IFS=' ' read -r -a results
+python3 ${TOOL_DIR}/parse_values.py pingpong-throughput-tb-inter-bdw.out > pingpong-throughput-tb-inter-bdw.out.final && \
+tmp=$(parse_speedup pingpong-throughput-tb-inter-bdw.out.final)
+IFS=' ' read -r -a results <<< ${tmp}
 thp_inter=${results[1]}
 
 tmp=$(echo -e ${orig_inter} | tr "\t" " ")
@@ -85,6 +94,7 @@ for i in ${!orig_inter_array[@]}; do
         speedup_inter="${speedup_inter}\t$(echo "scale=3;${orig_inter_array[i]}/${thp_inter_array[i]}" | bc)"
     else
         speedup_inter="$(echo "scale=3;${orig_inter_array[i]}/${thp_inter_array[i]}" | bc)"
+    fi
 done
 
 sed -i "13c ${orig_inter_array}" fig9b.data

@@ -30,8 +30,11 @@ function parse_speedup {
 cp data.template fig11.data
 
 # speedup
-python3 ${TOOL_DIR}/parse_values.py miniGhost.x-original-speedup.out | awk '{printf("%.3f ", $2)}' | IFS=' ' read -r -a orig_time
-python3 ${TOOL_DIR}/parse_values.py miniGhost.x-throughput-speedup.out | awk '{printf("%.3f ", $2)}' | IFS=' ' read -r -a thp_time
+tmp=$(python3 ${TOOL_DIR}/parse_values.py miniGhost.x-original-speedup.out | awk '{printf("%.3f ", $2)}') && \
+IFS=' ' read -r -a orig_time <<< ${tmp}
+
+tmp=$(python3 ${TOOL_DIR}/parse_values.py miniGhost.x-throughput-speedup.out | awk '{printf("%.3f ", $2)}') && \
+IFS=' ' read -r -a thp_time <<< ${tmp}
 speedup=""
 for i in ${!orig_time[@]}; do
     if [ $i != 0 ]; then
