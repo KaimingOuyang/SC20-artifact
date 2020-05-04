@@ -62,12 +62,12 @@ for i in ${!orig_intra_array[@]}; do
     fi
 done
 
-sed -i "13c ${orig_intra_array}" fig9a.data
+sed -i "13c ${orig_intra}" fig9a.data
 sed -i "13 s/^/\t/" fig9a.data
-sed -i "16c ${thp_intra_array}" fig9a.data
+sed -i "16c ${thp_intra}" fig9a.data
 sed -i "16 s/^/\t/" fig9a.data
-sed -i "23c ${speedup_intra}" fig9a.data
-sed -i "23 s/^/\t/" fig9a.data
+sed -i "21c ${speedup_intra}" fig9a.data
+sed -i "21 s/^/\t/" fig9a.data
 
 python3 ${TOOL_DIR}/Painter.py fig9a.data
 
@@ -97,11 +97,11 @@ for i in ${!orig_inter_array[@]}; do
     fi
 done
 
-sed -i "13c ${orig_inter_array}" fig9b.data
+sed -i "13c ${orig_inter}" fig9b.data
 sed -i "13 s/^/\t/" fig9b.data
-sed -i "16c ${thp_inter_array}" fig9b.data
+sed -i "16c ${thp_inter}" fig9b.data
 sed -i "16 s/^/\t/" fig9b.data
-sed -i "23c ${speedup_inter}" fig9b.data
-sed -i "23 s/^/\t/" fig9b.data
+sed -i "21c ${speedup_inter}" fig9b.data
+sed -i "21 s/^/\t/" fig9b.data
 
 python3 ${TOOL_DIR}/Painter.py fig9b.data
