@@ -49,7 +49,5 @@ bar_xticks
 secline
 	Overall Speedup
 	1.065	1.110	1.412	1.352	1.351	1.301	1.247	1.188	1.179	1.073	1.111
-yseclim
-	1	1.5
 yseclabel
 	Speedup

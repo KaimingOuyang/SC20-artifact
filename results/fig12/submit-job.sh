@@ -18,7 +18,7 @@ if [ $stats != 0 ]; then
 fi
 
 
-nodes=(1 2 3 4 6 8 10 12 14 16 24 32)
+nodes=(1 2 4 6 8 10 12 14 16 24 32)
 #jobid=
 cd ${CURR_DIR} && \
 for N in ${nodes[@]}; do

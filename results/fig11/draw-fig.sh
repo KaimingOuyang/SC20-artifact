@@ -58,7 +58,7 @@ fi
 speedup=""
 for i in ${!orig_time[@]}; do
     if [ $i == 0 ]; then
-        speedup+="$(echo "scale=3;${orig_time[i]} / ${thp_time[i]}" | bc)"
+        speedup="$(echo "scale=3;${orig_time[i]} / ${thp_time[i]}" | bc)"
     else
         speedup="${speedup}\t$(echo "scale=3;${orig_time[i]} / ${thp_time[i]}" | bc)"
     fi
