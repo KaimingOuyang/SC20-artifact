@@ -10,7 +10,7 @@ out=$2
 
 rm ${out} > /dev/null 2>&1
 echo "bin=$bin out=$out"
-
+export BIND_MODE=SEQUENCE
 devi_iter=5
 proc=36
 iter=20

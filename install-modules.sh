@@ -12,7 +12,7 @@ make PREFIX=${ROOT_DIR}/lib/openblas install
 
 # PAPI
 cd ${ROOT_DIR}/deps/papi && \
-git checkout stable-5.7 && \
+git checkout -f stable-5.7 && \
 cd src && \
 ./configure CC=gcc FC=gfortran CXX=g++ --prefix=${ROOT_DIR}/lib/papi && make -j 4 && make install
 
@@ -56,7 +56,7 @@ cd ${ROOT_DIR} && cp install.sh cab-mpi
 cd ${ROOT_DIR}/cab-mpi
 
 # install standard MPICH
-git checkout pmodel-master
+git checkout -f pmodel-master
 ./autogen.sh | tee autogen.log
 
 stats=$?
@@ -73,7 +73,7 @@ if [ $stats -ne 0 ]; then
     exit 1
 fi
 
-git checkout rebase-pip-pingpong-original && \
+git checkout -f rebase-pip-pingpong-original && \
 ./autogen.sh | tee autogen.log
 
 stats=$?
@@ -108,7 +108,7 @@ fi
 
 INSTALLED_NAME=mpich-pingpong-localized-bdw
 export MPICHLIB_CFLAGS="-DBEBOP -DMPIDI_PIP_SHM_GET_STEALING -DENABLE_DYNAMIC_CHUNK -DMPIDI_PIP_SHM_ACC_STEALING -DMPIDI_PIP_OFI_ACC_STEALING -DMPIDI_PIP_STEALING_ENABLE -DENABLE_CONTIG_STEALING -DENABLE_NON_CONTIG_STEALING -DENABLE_OFI_STEALING -DENABLE_PARTNER_STEALING -Wl,--dynamic-linker=${GLIBC_DIR}/lib/ld-2.17.so"
-git checkout rebase-pip-pingpong-localized && \
+git checkout -f rebase-pip-pingpong-localized && \
 sh install.sh ${INSTALLED_NAME} 2>&1 | tee install.log
 
 stats=$?
@@ -131,7 +131,7 @@ fi
 # pingpong mixed broadwell
 INSTALLED_NAME=mpich-pingpong-mixed-bdw
 export MPICHLIB_CFLAGS="-DBEBOP -DMPIDI_PIP_SHM_GET_STEALING -DENABLE_DYNAMIC_CHUNK -DMPIDI_PIP_SHM_ACC_STEALING -DMPIDI_PIP_OFI_ACC_STEALING -DMPIDI_PIP_STEALING_ENABLE -DENABLE_CONTIG_STEALING -DENABLE_NON_CONTIG_STEALING -DENABLE_OFI_STEALING -DENABLE_PARTNER_STEALING -Wl,--dynamic-linker=${GLIBC_DIR}/lib/ld-2.17.so"
-git checkout rebase-pip-pingpong-mixed && \
+git checkout -f rebase-pip-pingpong-mixed && \
 sh install.sh ${INSTALLED_NAME} 2>&1 | tee install.log
 
 stats=$?
@@ -155,7 +155,7 @@ fi
 #pingpong throughput bdw
 INSTALLED_NAME=mpich-pingpong-throughput-bdw
 export MPICHLIB_CFLAGS="-DBEBOP -DMPIDI_PIP_SHM_GET_STEALING -DENABLE_DYNAMIC_CHUNK -DMPIDI_PIP_SHM_ACC_STEALING -DMPIDI_PIP_OFI_ACC_STEALING -DMPIDI_PIP_STEALING_ENABLE -DENABLE_CONTIG_STEALING -DENABLE_NON_CONTIG_STEALING -DENABLE_OFI_STEALING -DENABLE_PARTNER_STEALING -Wl,--dynamic-linker=${GLIBC_DIR}/lib/ld-2.17.so"
-git checkout rebase-pip-pingpong-throughput && \
+git checkout -f rebase-pip-pingpong-throughput && \
 sh install.sh ${INSTALLED_NAME} 2>&1 | tee install.log
 
 stats=$?
@@ -179,7 +179,7 @@ fi
 # throughput-aware bdw
 INSTALLED_NAME=mpich-throughput-aware-bdw
 export MPICHLIB_CFLAGS="-DBEBOP -DMPIDI_PIP_SHM_GET_STEALING -DENABLE_DYNAMIC_CHUNK -DMPIDI_PIP_SHM_ACC_STEALING -DMPIDI_PIP_OFI_ACC_STEALING -DMPIDI_PIP_STEALING_ENABLE -DENABLE_CONTIG_STEALING -DENABLE_NON_CONTIG_STEALING -DENABLE_OFI_STEALING -DENABLE_PARTNER_STEALING -Wl,--dynamic-linker=${GLIBC_DIR}/lib/ld-2.17.so"
-git checkout rebase-pip-throughput-aware && \
+git checkout -f rebase-pip-throughput-aware && \
 sh install.sh ${INSTALLED_NAME} 2>&1 | tee install.log
 
 stats=$?
@@ -202,7 +202,7 @@ fi
 #pingpong throughput rev bdw
 INSTALLED_NAME=mpich-throughput-non-rev-bdw
 export MPICHLIB_CFLAGS="-DBEBOP -DENABLE_REVERSE_TASK_ENQUEUE -DMPIDI_PIP_SHM_GET_STEALING -DENABLE_DYNAMIC_CHUNK -DMPIDI_PIP_SHM_ACC_STEALING -DMPIDI_PIP_OFI_ACC_STEALING -DMPIDI_PIP_STEALING_ENABLE -DENABLE_CONTIG_STEALING -DENABLE_NON_CONTIG_STEALING -DENABLE_OFI_STEALING -DENABLE_PARTNER_STEALING -Wl,--dynamic-linker=${GLIBC_DIR}/lib/ld-2.17.so"
-git checkout 816dc6b92571992bcfdd16645cac6371b0763b3f && \
+git checkout -f 816dc6b92571992bcfdd16645cac6371b0763b3f && \
 sh install.sh ${INSTALLED_NAME} 2>&1 | tee install.log
 
 stats=$?
@@ -214,7 +214,7 @@ fi
 
 INSTALLED_NAME=mpich-throughput-rev-bdw
 export MPICHLIB_CFLAGS="-DBEBOP -DENABLE_REVERSE_TASK_ENQUEUE -DMPIDI_PIP_SHM_GET_STEALING -DENABLE_DYNAMIC_CHUNK -DMPIDI_PIP_SHM_ACC_STEALING -DMPIDI_PIP_OFI_ACC_STEALING -DMPIDI_PIP_STEALING_ENABLE -DENABLE_CONTIG_STEALING -DENABLE_NON_CONTIG_STEALING -DENABLE_OFI_STEALING -DENABLE_PARTNER_STEALING -Wl,--dynamic-linker=${GLIBC_DIR}/lib/ld-2.17.so"
-git checkout 2eda99cdfba3ebcf08eb56379b64c0053e6c3177 && \
+git checkout -f 2eda99cdfba3ebcf08eb56379b64c0053e6c3177 && \
 sh install.sh ${INSTALLED_NAME} 2>&1 | tee install.log
 
 stats=$?
@@ -226,7 +226,7 @@ fi
 #pingpong dynamic chunk bdw
 INSTALLED_NAME=mpich-chunk-check-bdw
 export MPICHLIB_CFLAGS="-DBEBOP -DENABLE_REVERSE_TASK_ENQUEUE -DMPIDI_PIP_SHM_GET_STEALING -DENABLE_DYNAMIC_CHUNK -DMPIDI_PIP_SHM_ACC_STEALING -DMPIDI_PIP_OFI_ACC_STEALING -DMPIDI_PIP_STEALING_ENABLE -DENABLE_CONTIG_STEALING -DENABLE_NON_CONTIG_STEALING -DENABLE_OFI_STEALING -DENABLE_PARTNER_STEALING -Wl,--dynamic-linker=${GLIBC_DIR}/lib/ld-2.17.so"
-git checkout rebase-pip-dynamic-chunk-stealing && \
+git checkout -f rebase-pip-dynamic-chunk-stealing && \
 sh install.sh ${INSTALLED_NAME} 2>&1 | tee install.log
 
 stats=$?
@@ -237,7 +237,7 @@ fi
 
 INSTALLED_NAME=mpich-dynamic-chunk-bdw
 export MPICHLIB_CFLAGS="-DBEBOP -DENABLE_REVERSE_TASK_ENQUEUE -DMPIDI_PIP_SHM_GET_STEALING -DENABLE_DYNAMIC_CHUNK -DMPIDI_PIP_SHM_ACC_STEALING -DMPIDI_PIP_OFI_ACC_STEALING -DMPIDI_PIP_STEALING_ENABLE -DENABLE_CONTIG_STEALING -DENABLE_NON_CONTIG_STEALING -DENABLE_OFI_STEALING -DENABLE_PARTNER_STEALING -Wl,--dynamic-linker=${GLIBC_DIR}/lib/ld-2.17.so"
-git checkout 3d6b170143c444bdb65b9fda2570218fd27a40d2 && \
+git checkout -f 3d6b170143c444bdb65b9fda2570218fd27a40d2 && \
 sh install.sh ${INSTALLED_NAME} 2>&1 | tee install.log
 
 stats=$?
