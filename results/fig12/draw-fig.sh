@@ -47,7 +47,7 @@ orig_acc_time="$(cat bspmm_profile_original.out.final | awk '{printf("%.3f\\t", 
 orig_acc_time=${orig_acc_time::$((${#orig_acc_time} - 2))}
 
 stats=$?
-echo $stats
+# echo $stats
 if [ $stats != 0 ]; then
     echo "get original acc time fails"
     exit 1
@@ -84,7 +84,7 @@ if [ $stats != 0 ]; then
 fi
 
 IFS=' ' read -r -a orig_total_array <<< ${tmp}
-echo ${orig_total_array[@]}
+# echo ${orig_total_array[@]}
 stats=$?
 if [ $stats != 0 ]; then
     echo "get orig_total_array fails"
@@ -95,7 +95,7 @@ line=28
 types=(fop dgemm get acc)
 for type in ${types[@]}; do
     var=orig_${type}_time
-    echo ${var}
+    # echo ${var}
     sed -i "${line}c ${!var}" fig12.data && \
     sed -i "${line} s/^/\t/" fig12.data
 
@@ -132,14 +132,14 @@ thp_dgemm_time=${thp_dgemm_time::$((${#thp_dgemm_time} - 2))}
 #total time
 thp_total_time="$(cat bspmm_profile_throughput.out.final | awk '{printf("%.3f ", $10)}')" && \
 tmp=$(echo ${thp_total_time::$((${#thp_total_time} - 1))})
-echo tmp=${tmp}
+# echo tmp=${tmp}
 IFS=' ' read -r -a thp_total_array <<< ${tmp}
-echo ${thp_total_array[@]}
+# echo ${thp_total_array[@]}
 line=40
 types=(fop dgemm get acc)
 for type in ${types[@]}; do
     var=thp_${type}_time
-    echo ${var}
+    # echo ${var}
     sed -i "${line}c ${!var}" fig12.data && \
     sed -i "${line} s/^/\t/" fig12.data
     line=$((line + 2))
@@ -157,9 +157,9 @@ for i in ${!orig_total_array[@]}; do
         echo "get speedup fails"
         exit 1
     fi
-    echo ${speedup}
+    # echo ${speedup}
 done
-echo ${speedup}
+# echo ${speedup}
 sed -i "51c ${speedup}" fig12.data
 sed -i "51 s/^/\t/" fig12.data
 
