@@ -10,8 +10,8 @@ Get Started
 The script by default uses slurm job scheduler; if the system the 
 script is running on has different job scheduler, you may need to modify the 
 job scripts in results/*/*.job accordingly. If slurm job scheduler is used, 
-but job partition name is different, please modify the "BDW_PARTITION" and
-"KNL_PARTITION" to the correct partition name.
+but job partition name is different, please modify the variable "BDW_PARTITION" and
+"KNL_PARTITION" in "submit-jobs.sh" file to the correct partition name.
 
 After all jobs are finished, please make sure python3 and matplotlib library is 
 present in order to produce the corresponding figures.
